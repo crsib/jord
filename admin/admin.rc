@@ -1,0 +1,9 @@
+{
+	{
+		base_path = ":/lua/admin",
+		resource_path = "lua",
+		entries = {
+			{ ".", recursive = true }
+		}
+	}
+} 

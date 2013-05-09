@@ -1,5 +1,6 @@
 #include "core.h"
 #include "rc/rc.h"
+#include "lua/io/lua_io.h"
 
 static const luaL_Reg __lualibs[] = {
 	{ "",             luaopen_base   },
@@ -10,7 +11,8 @@ static const luaL_Reg __lualibs[] = {
 	{ LUA_MATHLIBNAME,luaopen_math   },
 	{ LUA_DBLIBNAME,  luaopen_debug  },
 	{ LUA_LOADLIBNAME,luaopen_package},
-	{ "core",         core_open      }
+	{ "core",         core_open      },
+	{ LUA_IOLIBNAME,  lua::io::open_library }
 };
 
 static const size_t   __libs_count = sizeof( __lualibs ) / sizeof( luaL_Reg );

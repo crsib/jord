@@ -53,3 +53,5 @@ include_directories( core/include )
 add_subdirectory( core )
 
 add_subdirectory( admin )
+
+add_subdirectory( tests ) 

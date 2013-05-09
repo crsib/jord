@@ -215,7 +215,7 @@ namespace rc
 				char data;
 				input.read( &data, 1 );
 
-				stream  << unsigned( data ) << ", ";
+				stream  << int( data ) << ", ";
 			}
 		}
 

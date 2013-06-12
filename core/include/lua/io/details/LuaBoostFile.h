@@ -12,7 +12,7 @@ namespace lua
 			class LuaBoostFile : public LuaAbstractFile
 			{
 			public:
-				explicit LuaBoostFile( const char* path, const char* mode );
+				LuaBoostFile( const char* path, const char* mode );
 				explicit LuaBoostFile( FILE* handle );
 
 				enum StdFile

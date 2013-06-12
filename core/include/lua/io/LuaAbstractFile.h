@@ -24,11 +24,11 @@ namespace lua
 			virtual bool   readLine( std::string& line ) = 0;
 			virtual bool   read( std::vector<char>& data, size_t num_bytes = ~((size_t)0 ) ) = 0;
 
-			virtual bool   writeNumber( LUA_NUMBER number ) = 0;
-			virtual bool   writeBuffer( const char* data, size_t size ) = 0;
+			virtual bool   writeNumber( LUA_NUMBER number ) { return false; }
+			virtual bool   writeBuffer( const char* data, size_t size ) { return false; }
 
-			virtual bool   flush() = 0;
-			virtual bool   close() = 0;
+			virtual bool   flush() { return false; }
+			virtual bool   close() { return false; }
 
 			enum SeekMode
 			{

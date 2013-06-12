@@ -1,6 +1,7 @@
 #include "lua/io/lua_io.h"
 
 #include "lua/io/LuaFileAdapter.h"
+#include "lua/io/LuaDirectoryAdapter.h"
 
 #include "lua/io/LuaIOManager.h"
 
@@ -10,7 +11,6 @@ namespace lua
 	{
 		int open_library( lua_State* l )
 		{
-			using namespace luabind;
 			// Create io table
 			lua_newtable( l );
 

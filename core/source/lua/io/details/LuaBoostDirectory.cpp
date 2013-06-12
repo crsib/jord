@@ -27,6 +27,12 @@ namespace lua
 					return "";
 				return (*m_CurrentIterator)->path().string();
 			}
+
+			std::string LuaBoostDirectory::path() const
+			{
+				return m_DirectoryPath;
+			}
+
 		}
 	}
 }

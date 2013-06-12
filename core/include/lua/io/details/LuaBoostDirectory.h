@@ -23,6 +23,7 @@ namespace lua
 
 				virtual std::string getFirstEntry();
 				virtual std::string getNextEntry();
+				virtual std::string path() const;
 			private:
 				boost::filesystem::directory_iterator* m_CurrentIterator;
 				std::string                            m_DirectoryPath;

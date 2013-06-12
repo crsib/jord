@@ -4,7 +4,7 @@ namespace lua
 {
 	namespace io
 	{
-		char* LuaFileAdapter::class_name = "LuaFileAdapter";
+		const char* LuaFileAdapter::class_name = "LuaFileAdapter";
 
 		RegisterCustomClass<LuaFileAdapter>::RegType LuaFileAdapter::methods[] = {
 			{ "read", &LuaFileAdapter::read },
@@ -29,7 +29,7 @@ namespace lua
 			: m_FileHandle( handle )
 		{
 			if( handle && handle->isOpen() && !handle->isStdFile() )
-				opened_files++;
+				opened_files_count++;
 		}
 
 		LuaFileAdapter::~LuaFileAdapter()
@@ -38,7 +38,7 @@ namespace lua
 			if( m_FileHandle )
 			{
 				if( m_FileHandle->close() )
-					opened_files--;
+					opened_files_count--;
 
 				if( !m_FileHandle->isStdFile() )
 					delete m_FileHandle;
@@ -181,7 +181,7 @@ namespace lua
 
 			bool result;
 			if( (result = m_FileHandle->close()) )
-				opened_files--;
+				opened_files_count--;
 			else
 				luaL_error( l, "file is already closed" );
 
@@ -304,7 +304,7 @@ namespace lua
 			return m_FileHandle;
 		}
 
-		int LuaFileAdapter::opened_files = 0;
+		int LuaFileAdapter::opened_files_count = 0;
 
 	}
 }

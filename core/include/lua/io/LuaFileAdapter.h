@@ -2,8 +2,6 @@
 
 #include <string>
 #include <lua.hpp>
-#include <luabind/luabind.hpp>
-#include <luabind/object.hpp>
 
 #include "lua/io/LuaAbstractFile.h"
 #include "lua/RegisterCustomClass.h"
@@ -39,11 +37,11 @@ namespace lua
 
 			LuaAbstractFile* getFileHandle() const;
 
-			static char* class_name;
+			static const char* class_name;
 			static RegisterCustomClass<LuaFileAdapter>::RegType methods[];
 			static RegisterCustomClass<LuaFileAdapter>::RegType meta_methods[];
 
-			static int opened_files;
+			static int opened_files_count;
 		private:
 			LuaAbstractFile*       m_FileHandle;
 		};

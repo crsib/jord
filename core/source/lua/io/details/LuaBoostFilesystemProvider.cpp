@@ -1,5 +1,6 @@
 #include "lua/io/details/LuaBoostFilesystemProvider.h"
 #include "lua/io/details/LuaBoostFile.h"
+#include "lua/io/details/LuaBoostDirectory.h"
 
 #include <boost/filesystem.hpp>
 
@@ -38,18 +39,31 @@ namespace lua
 
 			LuaAbstractFile* LuaBoostFilesystemProvider::getFile( const std::string& path, const std::string& mode ) const
 			{
-				LuaBoostFile* file = new LuaBoostFile( path.c_str(), mode.c_str() );
-				return file;
+				return new LuaBoostFile( path.c_str(), mode.c_str() );
 			}
 
 			LuaAbstractDirectory* LuaBoostFilesystemProvider::getDirectory( const std::string& path ) const
 			{
+				using namespace boost;
+				if( filesystem::exists( path ) && filesystem::is_directory( path ) )
+					return new LuaBoostDirectory( path.c_str() );
 				return NULL;
 			}
 
 			LuaAbstractDirectory* LuaBoostFilesystemProvider::createDirectory( const std::string& path, bool create_parents )
 			{
-				return NULL;
+				boost::system::error_code error;
+				using namespace boost::filesystem;
+
+				bool result = create_parents ? create_directories( path, error ) : create_directory( path, error );
+
+				if( !result )
+				{
+					std::clog << error.message() << std::endl;
+					return NULL;
+				}
+
+				return new LuaBoostDirectory( path.c_str() );
 			}
 
 			LUA_NUMBER LuaBoostFilesystemProvider::getTimestamp( const std::string& path ) const

@@ -14,6 +14,7 @@ namespace lua
 			// Both functions may modify the state
 			virtual std::string getFirstEntry() = 0;
 			virtual std::string getNextEntry() = 0;
+			virtual std::string path() const = 0;
 		};
 	}
 }

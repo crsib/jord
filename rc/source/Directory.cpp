@@ -25,7 +25,7 @@ namespace rc
 			addChild( *it );
 	}
 
-	void Directory::getChildren( children_list_t& children, bool recursive )
+	void Directory::getChildren( children_list_t& children, bool recursive ) const
 	{
 		getChildren( children, []( const NodePtr& node ) { return true; }, recursive );
 	}

@@ -24,7 +24,7 @@ namespace rc
 		template< typename Predicate >
 		void          getChildren( children_list_t& children, Predicate pred, bool recursive ) const;
 		
-		void          getChildren( children_list_t& children, bool recursive = false );
+		void          getChildren( children_list_t& children, bool recursive = false ) const;
 
 		void          setOwner( Root* root );
 	private:
